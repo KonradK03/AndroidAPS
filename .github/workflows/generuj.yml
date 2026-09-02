@@ -1,0 +1,16 @@
+name: Generowanie Klucza
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tworzenie Keystore i Base64
+        run: |
+          keytool -genkey -v -keystore keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias aaps-key -storepass "Ewolucja81" -keypass "Ewolucja81" -dname "CN=Konrad, O=AAPS, C=PL"
+          echo "=========================================="
+          echo "TWOJ KOD BASE64 (skopiuj to poniżej):"
+          echo "=========================================="
+          base64 -w 0 keystore.jks
+          echo ""
+          echo "=========================================="
+          
